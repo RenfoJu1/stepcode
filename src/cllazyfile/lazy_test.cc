@@ -122,8 +122,15 @@ int main (int argc, char ** argv ) {
         std::cout << "loading lazy instance #" << complexInsts->at( 0 ) << "." << std::endl;
         STEPcomplex * c = dynamic_cast<STEPcomplex *>( mgr->loadInstance( complexInsts->at( 0 ) ) );
         if( c ) {
-            std::cout << "complex: " << c->IsComplex() << ", attr list size: " << c->_attr_data_list.size() << std::endl;
+//             assert( c->IsComplex() );
+            std::cout << "attr list size: " << c->_attr_data_list.size() << std::endl;
+            STEPcomplex_attr_data_list::iterator it;
+            for( it = c->_attr_data_list.begin(); it != c->_attr_data_list.end(); it++ ) {
+                SDAI_Application_instance * attr = ( SDAI_Application_instance * ) *it;
+                std::cout << "attr " << attr->eDesc->Name() << std::endl;
+            }
         }
+        std::cout << "Number of instances loaded now: " << mgr->loadedInstanceCount() << std::endl;
     }
 #endif //NO_REGISTRY
 

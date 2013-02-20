@@ -287,11 +287,11 @@ STEPcomplex * sectionReader::CreateSubSuperInstance( const Registry * reg, insta
     std::vector<std::string *> typeNames;
     _file.get(); //move past the first '('
     while( _file.good() && ( _file.peek() != ')' ) ) {
-        c = _file.peek();
-        pos = _file.tellg();
+        c = _file.peek(); //for debugging
+        pos = _file.tellg(); //for debugging
         typeNames.push_back( new std::string( getDelimitedKeyword( ";( /\\" ) ) );
-        c = _file.peek();
-        pos = _file.tellg();
+        c = _file.peek(); //for debugging
+        pos = _file.tellg(); //for debugging
         if( typeNames.back()->empty() ) {
             delete typeNames.back();
             typeNames.pop_back();
